@@ -1,23 +1,50 @@
 import logo from './logo.svg';
 import './App.css';
+import { useEffect } from 'react';
+
+import {GoogleLogin , GoogleLogout}from 'react-google-login';
+import { gapi } from 'gapi-script';
+
+
+
 
 function App() {
+  
+  const onSuccess = response => {
+    console.log('SUCCESS', response);
+  };
+  const onFailure = response => {
+    console.log('FAILED', response);
+  };
+  const onLogoutSuccess = () => {
+    console.log('SUCESS LOG OUT');
+  };
+
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: "72702126253-gk8cjqhtn4spj35a336earhlej9b3i8d.apps.googleusercontent.com",
+        scope: 'email',
+      });
+    }
+    gapi.load('client:auth2', start);
+  }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    
+      <GoogleLogin
+        clientId="72702126253-gk8cjqhtn4spj35a336earhlej9b3i8d.apps.googleusercontent.com"
+        buttonText="Login"
+        onSuccess={onSuccess}
+        onFailure={onFailure}
+        cookiePolicy={'single_host_origin'}
+      />
+      <GoogleLogout
+        clientId={"72702126253-gk8cjqhtn4spj35a336earhlej9b3i8d.apps.googleusercontent.com"}
+
+        onLogoutSuccess={onLogoutSuccess}
+
+      />
     </div>
   );
 }

@@ -1,3 +1,14 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow:
+
+
+
+Join Zoom Meeting
+https://us06web.zoom.us/j/3826138599?pwd=cFo5WUpKUGRIVmt6eWpYYWhQTlZiUT09
+
+Meeting ID: 382 613 8599
+Passcode: UdDz2m
+
+
+
